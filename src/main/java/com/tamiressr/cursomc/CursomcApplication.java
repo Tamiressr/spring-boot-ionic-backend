@@ -13,6 +13,7 @@ import com.tamiressr.cursomc.domain.Cidade;
 import com.tamiressr.cursomc.domain.Cliente;
 import com.tamiressr.cursomc.domain.Endereco;
 import com.tamiressr.cursomc.domain.Estado;
+import com.tamiressr.cursomc.domain.ItemPedido;
 import com.tamiressr.cursomc.domain.Pagamento;
 import com.tamiressr.cursomc.domain.PagamentoComBoleto;
 import com.tamiressr.cursomc.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.tamiressr.cursomc.repositories.CidadeRepository;
 import com.tamiressr.cursomc.repositories.ClienteRepository;
 import com.tamiressr.cursomc.repositories.EnderecoRepository;
 import com.tamiressr.cursomc.repositories.EstadoRepository;
+import com.tamiressr.cursomc.repositories.ItemPedidoRepository;
 import com.tamiressr.cursomc.repositories.PagamentoRepository;
 import com.tamiressr.cursomc.repositories.PedidoRepository;
 import com.tamiressr.cursomc.repositories.ProdutoRepository;
@@ -48,6 +50,8 @@ public class CursomcApplication implements CommandLineRunner{
 	private PedidoRepository pedidoRepository;
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -109,6 +113,18 @@ public class CursomcApplication implements CommandLineRunner{
 		pedidoRepository.saveAll(Arrays.asList(pedido1,pedido2));
 		pagamentoRepository.saveAll(Arrays.asList(pagamento1,pagamento2));
 		
+		
+		ItemPedido itemPedido1= new ItemPedido(pedido1, p1, 0.00, 1, 2000.00);
+		ItemPedido itemPedido2= new ItemPedido(pedido1, p3, 0.00, 2, 80.00);
+		ItemPedido itemPedido3= new ItemPedido(pedido1, p2, 0.00, 1, 800.00);
+		pedido1.getItens().addAll(Arrays.asList(itemPedido1,itemPedido2));
+		pedido2.getItens().addAll(Arrays.asList(itemPedido3));
+		
+		p1.getItens().addAll(Arrays.asList(itemPedido1));
+		p2.getItens().addAll(Arrays.asList(itemPedido3));
+		p3.getItens().addAll(Arrays.asList(itemPedido2));
+		
+		itemPedidoRepository.saveAll(Arrays.asList(itemPedido1,itemPedido2,itemPedido3));
 		}
 
 }
