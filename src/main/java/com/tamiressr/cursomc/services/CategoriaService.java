@@ -13,7 +13,7 @@ import com.tamiressr.cursomc.services.exceptions.ObjectNotFoundException;
 public class CategoriaService {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
-	public Categoria buscar(Integer id) {
+	public Categoria find(Integer id) {
 		Optional<Categoria> obj=categoriaRepository.findById(id);
 		
 		return obj.orElseThrow(()-> new ObjectNotFoundException(
@@ -23,6 +23,12 @@ public class CategoriaService {
 	public Categoria insert(Categoria obj) {
 		//garante que está salvando um obj novo
 		obj.setId(null);
+		return categoriaRepository.save(obj);
+	}
+	
+	public Categoria update(Categoria obj) {
+		//busca o obj, caso não exista lança excessão
+		find(obj.getId());
 		return categoriaRepository.save(obj);
 	}
 	
