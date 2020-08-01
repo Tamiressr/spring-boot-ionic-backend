@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.tamiressr.cursomc.domain.Categoria;
+import com.tamiressr.cursomc.domain.Cliente;
 import com.tamiressr.cursomc.dto.CategoriaDTO;
 import com.tamiressr.cursomc.repositories.CategoriaRepository;
 import com.tamiressr.cursomc.services.exceptions.DataIntegrityException;
@@ -32,12 +33,13 @@ public class CategoriaService {
 		obj.setId(null);
 		return categoriaRepository.save(obj);
 	}
-	
 	public Categoria update(Categoria obj) {
 		//busca o obj, caso não exista lança excessão
-		find(obj.getId());
-		return categoriaRepository.save(obj);
+		Categoria newObj=find(obj.getId());
+		updateData(newObj, obj);
+		return categoriaRepository.save(newObj);
 	}
+	
 	
 	public void delete(Integer id) {
 		find(id);
@@ -62,4 +64,11 @@ public class CategoriaService {
 	public Categoria fromDTO(CategoriaDTO objDTO) {
 		return new Categoria(objDTO.getId(),objDTO.getNome());
 	}
+	//metodo auxiliar para atualizar os dados de um obj com base em um obj já criado
+	private void updateData(Categoria newObj, Categoria obj){
+			newObj.setNome(obj.getNome());
+
+			
+		}
+	
 }
