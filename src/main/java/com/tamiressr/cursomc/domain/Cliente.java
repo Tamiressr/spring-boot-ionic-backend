@@ -49,7 +49,8 @@ public class Cliente implements Serializable{
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
-		this.tipo = tipo.getCod();
+		//condicional utilizada para fazer com que o clientedto consiga instanciar um cliente a partir de seus dados
+		this.tipo = (tipo==null)?null:tipo.getCod();
 	}
 
 	public Integer getId() {
