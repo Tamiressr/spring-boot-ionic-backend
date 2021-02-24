@@ -29,6 +29,13 @@ public class ItemPedido implements Serializable {
 		this.quantidade = quantidade;
 		this.preco = preco;
 	}
+	//itemPedido é responsável pelo subtotal do valor do pedido
+	public double getSubTotal() {
+		return (preco-desconto)*quantidade;
+	}
+	
+	
+	
 
 	public ItemPedidoPK getId() {
 		return id;

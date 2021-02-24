@@ -34,7 +34,7 @@ public class ProdutoService {
 		PageRequest pageRequest=  PageRequest.of(page, linesPerPage,Direction.valueOf(direction),orderBy);
 		List<Categoria> categorias=categoriaRepository.findAllById(ids);
 		
-		//findDistinctBy<>Containing... Padrão de nome do Spring data, não precisa da query se aplicar esse padrão na consulta 
+		
 		return produtoRepository.findDistinctByNomeContainingAndCategoriasIn(nome, categorias, pageRequest);
 		
 	
