@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.tamiressr.cursomc.services.DBService;
+import com.tamiressr.cursomc.services.EmailService;
+import com.tamiressr.cursomc.services.MockEmailService;
 
 /*
  * Configurações específicas do profile de teste
@@ -26,5 +28,10 @@ public class TestConfig {
 	public boolean instantiateDatabase() throws ParseException {
 		dbService.instantiateTestDatabase();
 		return true;
+	}
+	//um método com anotação @bean estará disponivel no sistema o spring procura por metodos com @bean
+	@Bean
+	public EmailService emailService() {
+		return  new MockEmailService();
 	}
 }
