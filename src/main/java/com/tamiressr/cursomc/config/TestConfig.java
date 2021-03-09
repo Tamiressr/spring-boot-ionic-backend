@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 import com.tamiressr.cursomc.services.DBService;
 import com.tamiressr.cursomc.services.EmailService;
 import com.tamiressr.cursomc.services.MockEmailService;
+import com.tamiressr.cursomc.services.SmtpEmailService;
 
 /*
  * Configurações específicas do profile de teste
@@ -34,4 +35,5 @@ public class TestConfig {
 	public EmailService emailService() {
 		return  new MockEmailService();
 	}
+	
 }
