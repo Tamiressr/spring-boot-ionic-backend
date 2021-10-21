@@ -23,6 +23,8 @@ public class ClienteDTO implements Serializable {
 	@Email(message="Email inválido")
 	private String email;
 
+
+	
 	public ClienteDTO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -57,5 +59,6 @@ public class ClienteDTO implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
+
 }
